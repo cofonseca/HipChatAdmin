@@ -9,7 +9,7 @@ To install and use PSHipChat, simply move the PSHipChat folder into your Modules
 
 To use PSHipChat, you will need to obtain an API key from HipChat. As an admin, you can do this right from HipChat's website by logging in as yourself, and navigating to Account Settings > API Access. Your API key will need to have the following scopes:
 - Administer Group
-- Administer Room
+- Manage Rooms
 - Send Notification
 
 ## Using PSHipChat
