@@ -35,7 +35,7 @@ New-HipchatRoom -Name 'Marketing' -Private
 ```
 
 #### Remove-HipchatRoom
-Deletes an existing room from HipChat, as long as there are no users in the room.
+Deletes an existing room from HipChat, and kicks all users from the room.
 ```
 Remove-HipchatRoom -Name 'Marketing'
 ```
@@ -55,7 +55,7 @@ Remove-HipchatUserFromRoom -MentionName 'SallyWalker' -Room 'Finance'
 #### Send-HipchatMessage
 Posts a custom message in any existing HipChat room.
 ```
-Send-HipchatMessage -Room 'Development' -Message 'Build Failed!' -BackgroundColor 'Red'
+Send-HipchatMessage 'Build Failed!' -Room 'Development' -BackgroundColor 'red' -Notify $false
 ```
 
 ## Contributing to PSHipChat
