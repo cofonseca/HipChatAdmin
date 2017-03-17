@@ -64,12 +64,11 @@ function Remove-HipchatUser{
         )
 
         # Check response status code #
-        $Response = $Call.StatusCode
-        if ($Response -eq '204') {
+        if ($Call.StatusCode -eq '204') {
             Write-Verbose "Response: $Response Success!"
+            Write-Output $Call.StatusCode
         } else {
-            Write-Verbose "Response: $Response Failed!"
-            Throw "User Deletion Failed"
+            Write-Error "Response: $Response Failed!"
         }
 
     }
