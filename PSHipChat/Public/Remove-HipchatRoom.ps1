@@ -22,7 +22,7 @@
 	Removes the HipChat room called 'Development' and kicks all users.
 
 #>
-function New-HipchatRoom{
+function Remove-HipchatRoom{
 
     [CmdletBinding()]
 	Param(
