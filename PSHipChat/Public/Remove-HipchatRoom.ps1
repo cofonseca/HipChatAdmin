@@ -5,7 +5,7 @@
 	Removes an existing HipChat room and kicks all users.
 .DESCRIPTION
 	Removes an existing HipChat room using HipChat's API. If there are any 
-    useres in the room, they will automatically be kicked.
+    users in the room, they will automatically be removed from the room.
 .PARAMETER Name
 	Required: The name of the room. The name must be entered exactly as it 
     appears on HipChat.
