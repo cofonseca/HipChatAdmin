@@ -4,7 +4,8 @@
 .SYNOPSIS
 	Creates a new HipChat room.
 .DESCRIPTION
-	Creates a new HipChat room using HipChat's API. The room can be
+	Creates a new HipChat room using HipChat's API. The room is made public by 
+	default, but can be optionally made private.
 .PARAMETER Name
 	Required: The name of the room.
 .PARAMETER Private
