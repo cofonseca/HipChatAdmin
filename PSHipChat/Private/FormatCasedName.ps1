@@ -14,16 +14,16 @@
   Creation Date:  3/16/17
   Purpose/Change: Initial script development
 .EXAMPLE
-  Format-CasedName -Name 'john'
+  FormatCasedName -Name 'john'
   Formats 'john' into 'John'
 .EXAMPLE
-  Format-CasedName 'smith'
+  FormatCasedName 'smith'
   Formats 'smith' into 'Smith'
 .EXAMPLE
-  Format-CasedName 'jo$ hn'
+  FormatCasedName 'jo$ hn'
   Formats 'jo$ hn' into 'John'
 #>
-function Format-CasedName{
+function FormatCasedName{
     [CmdletBinding()]Param(
     [Parameter(Mandatory=$true,ValueFromPipeline=$true,Position=0)][string]$Name
     )

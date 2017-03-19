@@ -46,8 +46,8 @@ function New-HipchatUser{
     BEGIN {
 
 		# Capitalize first and last name for proper formatting. #
-		$FirstName = Format-CasedName $FirstName
-		$LastName = Format-CasedName $LastName
+		$FirstName = FormatCasedName $FirstName
+		$LastName = FormatCasedName $LastName
 
 		# If no MentionName was specified, create one from the user's first and last name. #
 		if (-Not ($MentionName)) {

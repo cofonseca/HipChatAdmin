@@ -1,16 +1,16 @@
 Import-Module PSHipChat
 
-Describe "Format-CasedName" {
+Describe "FormatCasedName" {
     
     Context "When a name is provided" {
 
         It "Should remove numbers, spaces, and special characters from the name" {
-            Format-CasedName 'pe$ ste3r' | 
+            FormatCasedName 'pe$ ste3r' | 
             Should Be 'pester'
         }
 
         It "Should properly capitalize the first letter of the name" {
-            Format-CasedName 'pester' | 
+            FormatCasedName 'pester' | 
             Should BeExactly 'Pester'
         }
 
