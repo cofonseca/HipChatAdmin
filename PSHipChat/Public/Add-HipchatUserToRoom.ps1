@@ -33,7 +33,7 @@ function Add-HipchatUserToRoom{
 
     BEGIN {
 
-		$Uri = "https://api.hipchat.com/v2/room/"+$RoomName+"/member/"+$MentionName
+		$Uri = "https://api.hipchat.com/v2/room/"+$RoomName+"/member/@"+$MentionName+"?auth_token="+$ApiToken
     }
 
     PROCESS {
