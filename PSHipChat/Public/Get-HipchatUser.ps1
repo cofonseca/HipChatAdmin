@@ -14,8 +14,8 @@
 	Creation Date:  3/15/17
 	Purpose/Change: Added object output.
 .EXAMPLE
-	Get-HipchatUser
-	Returns a list of all HipChat users.
+	Get-HipchatUser -ApiToken 'REXsCauSe553gsoIJg1Gj4zwNsSAwS'
+	Returns a list of all HipChat users' names and mention names.
 
 #>
 function Get-HipchatUser{
