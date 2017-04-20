@@ -1,4 +1,4 @@
-﻿Import-Module PSHipChat
+﻿Import-Module PHipChatAdmin
 
 Describe "New-HipchatRoom" {
 

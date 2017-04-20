@@ -1,20 +1,26 @@
-# PSHipChat
+# HipChatAdmin
 
-PSHipChat is a simple PowerShell module designed to work with Atlassian HipChat. The module started as a simple script to add a new user whenever we hired a new employee, and slowly grew into what it is today. PSHipChat uses HipChat's API V2 to achieve its functionality, and contains a bunch of useful functions out of the box that allows you to automate user creation and removal, posting to rooms, and more. This would be a great addition to your employee onboarding scripts!
+HipChatAdmin is a simple PowerShell module designed to work with Atlassian HipChat. The module started as a simple script designed to create employee accounts during onboarding, and has slowly grown into what it is today. HipChatAdmin uses HipChat's API V2 to achieve its functionality, and contains a bunch of useful functions out of the box that allow you to automate user creation and removal, posting to rooms, and more. This would be a great addition to your employee onboarding scripts!
 
-## Installing PSHipChat
-To install and use PSHipChat, simply move the PSHipChat folder into your Modules folder. If you're not sure where your Modules folder is, open up PowerShell and type $env:PSModulePath. You can use any of the folders there, but we recommend \Documents\WindowsPowerShell\Modules.
+This module was previous titled PSHipChat, but due to a naming conflict on PowerShell Gallery, the name has been changed.
+
+## Installing HipChatAdmin
+There are two ways to install HipChatAdmin:
+
+To install HipChatAdmin automatically from the PowerShell Gallery, simply open up a PowerShell prompt and type "Install-Module -Name HipChatAdmin".
+
+To install HipChatAdmin manually, or if you are using an earlier version of PowerShell that doesn't support Install-Module, simply download the module from GitHub, and copy the HipChatAdmin folder into your Modules folder. If you're not sure where your Modules folder is, open up a PowerShell prompt and type $env:PSModulePath. You can use any of the folders there, but we recommend \Documents\WindowsPowerShell\Modules.
 
 ## Obtaining an API Key
 
-To use PSHipChat, you will need to obtain an API key from HipChat. As an admin, you can do this right from HipChat's website by logging in as yourself, and navigating to Account Settings > API Access. Your API key will need to have the following scopes:
+To use HipChatAdmin, you will need to obtain an API key from HipChat. As an admin, you can do this right from HipChat's website by logging in as yourself, and navigating to Account Settings > API Access. Your API key will need to have the following scopes:
 - Administer Group
 - Manage Rooms
 - Send Notification
 
-## Using PSHipChat
+## Using HipChatAdmin
 
-PSHipChat contains several helpful functions:
+HipChatAdmin contains several helpful functions:
 
 #### New-HipchatUser
 Creates a new user in HipChat.
@@ -64,5 +70,5 @@ Posts a custom message in any existing HipChat room.
 Send-HipchatMessage 'Build Failed!' -Room 'Development' -BackgroundColor 'red' -Notify $false -ApiToken 'REXsCauSe553gsoIJg1Gj4zwNsSAwS'
 ```
 
-## Contributing to PSHipChat
+## Contributing to HipChatAdmin
 I am always open to feedback, new ideas, and bug fixes. If you would like to help improve this project, please feel free to submit an issue or a pull request.
