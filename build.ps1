@@ -4,5 +4,6 @@ param ($Task = 'Default')
 Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
 
 Invoke-Pester .\Tests\Build.Tests.ps1
+Invoke-Pester .\Tests\Build.Tests.ps1 -Finalize
 #Invoke-psake -buildFile $ENV:BHProjectPath\psake.ps1 -taskList $Task -nologo
 #exit ( [int]( -not $psake.build_success ) )
