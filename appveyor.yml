@@ -1,8 +1,0 @@
-build: off
-
-before_test:
-- ps: Install-Module Pester -Force
-- ps: Install-Module PSScriptAnalyzer -Force
-
-test_script:
-- ps: . .\build.ps1

@@ -1,5 +1,3 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/p7xxys42fauna7mi?svg=true)](https://ci.appveyor.com/project/cofonseca19899/hipchatadmin)
-
 # HipChatAdmin
 
 HipChatAdmin is a simple PowerShell module designed to work with Atlassian HipChat. The module started as a simple script designed to create employee accounts during onboarding, and has slowly grown into what it is today. HipChatAdmin uses HipChat's API V2 to achieve its functionality, and contains a bunch of useful functions out of the box that allow you to automate user creation and removal, posting to rooms, and more. This would be a great addition to your employee onboarding scripts!
@@ -9,7 +7,10 @@ This module was previous titled PSHipChat, but due to a naming conflict on Power
 ## Installing HipChatAdmin
 There are two ways to install HipChatAdmin:
 
-To install HipChatAdmin automatically from the PowerShell Gallery, simply open up a PowerShell prompt and type "Install-Module -Name HipChatAdmin".
+To install HipChatAdmin automatically from the PowerShell Gallery, simply open up a PowerShell prompt and type:
+```
+Install-Module -Name HipChatAdmin
+```
 
 To install HipChatAdmin manually, or if you are using an earlier version of PowerShell that doesn't support Install-Module, simply download the module from GitHub, and copy the HipChatAdmin folder into your Modules folder. If you're not sure where your Modules folder is, open up a PowerShell prompt and type $env:PSModulePath. You can use any of the folders there, but we recommend \Documents\WindowsPowerShell\Modules.
 
