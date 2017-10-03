@@ -67,13 +67,21 @@ function New-HipchatUser{
 		Write-Verbose "Sending $Body to HipChat API"
 
 		# Send API Request #
-		$Call = (
-			Invoke-WebRequest `
-				-Uri "https://api.hipchat.com/v2/user?auth_token=$ApiToken" `
-				-Method POST `
-				-ContentType "application/json" `
-				-Body (ConvertTo-Json $Body)
-		)
+		try {
+			$Call = (
+				Invoke-WebRequest `
+					-Uri "https://api.hipchat.com/v2/user?auth_token=$ApiToken" `
+					-Method POST `
+					-ContentType "application/json" `
+					-Body (ConvertTo-Json $Body)
+			)
+		}
+		catch {
+			Write-Output "Caught an exception:"
+			Write-Output "Exception Type: $($_.Exception.GetType().FullName)"
+			Write-Output "Exception Message: $($_.Exception.Message)"
+			Exit 1
+		}
 
 	}
 
