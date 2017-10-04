@@ -87,8 +87,8 @@ function New-HipchatUser{
 			Write-Verbose "User Created Successfully!"
 			$OutputObject = New-Object -TypeName PSObject
 			$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'MentionName' -Value $MentionName
-            $OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'FirstName' -Value $FirstName
-            $OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'LastName' -Value $LastName
+			$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'FirstName' -Value $FirstName
+			$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'LastName' -Value $LastName
 			$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'StatusCode' -Value $Call.StatusCode
 			Write-Output $OutputObject
 		} else {

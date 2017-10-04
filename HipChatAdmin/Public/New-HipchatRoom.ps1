@@ -65,10 +65,10 @@ function New-HipchatRoom{
 				-ContentType "application/json" `
 				-Body (ConvertTo-Json $Body)
 		)
-        # Check response status code #
+		# Check response status code #
 		if ($Call.StatusCode -eq '201') {
 			Write-Verbose "Room Created Successfully!"
-            $OutputObject = New-Object -TypeName PSObject
+			$OutputObject = New-Object -TypeName PSObject
 			$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'Name' -Value $name
 			$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'StatusCode' -Value $Call.StatusCode
 			Write-Output $OutputObject

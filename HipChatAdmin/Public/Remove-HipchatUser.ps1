@@ -55,18 +55,18 @@ function Remove-HipchatUser{
   
         Write-Verbose "Sending $Key to HipChat API at $Uri"
 
-        # Remove user via HipChat API #
-        $Call = (
-            Invoke-WebRequest `
-                -Uri $Uri `
-                -Method DELETE `
-                -ContentType "application/json"
-        )
+		# Remove user via HipChat API #
+		$Call = (
+			Invoke-WebRequest `
+				-Uri $Uri `
+				-Method DELETE `
+				-ContentType "application/json"
+		)
 
-        # Check response status code #
-        if ($Call.StatusCode -eq '204') {
-            Write-Verbose "Response: $Response Success!"
-            $OutputObject = New-Object -TypeName PSObject
+		# Check response status code #
+		if ($Call.StatusCode -eq '204') {
+			Write-Verbose "Response: $Response Success!"
+			$OutputObject = New-Object -TypeName PSObject
 			$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'Name' -Value $name
 			$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'StatusCode' -Value $Call.StatusCode
 			Write-Output $OutputObject
