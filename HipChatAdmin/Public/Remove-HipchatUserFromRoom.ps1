@@ -50,7 +50,10 @@ function Remove-HipchatUserFromRoom{
 			# Check response status code #
 			if ($Call.StatusCode -eq '204') {
 				Write-Verbose "User Removed Successfully!"
-				Write-Output $Call.StatusCode
+				$OutputObject = New-Object -TypeName PSObject
+			    $OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'Name' -Value $name
+			    $OutputObject | Add-Member -MemberType 'NoteProperty' `-Name 'StatusCode' -Value $Call.StatusCode
+			    Write-Output $OutputObject
 			} else {
 				Write-Error "Failed to add user!"
 			}
