@@ -82,18 +82,20 @@ function Send-HipchatMessage{
 				-ContentType "application/json" `
 				-Body (ConvertTo-Json $Body)
 		)
+        # Check response status code #
+		if ($Call.StatusCode -eq '204') {
+			Write-Verbose "Message Successfully Sent!"
+			$OutputObject = New-Object -TypeName PSObject
+			$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'Name' -Value $name
+			$OutputObject | Add-Member -MemberType 'NoteProperty' `-Name 'StatusCode' -Value $Call.StatusCode
+			Write-Output $OutputObject
+		} else {
+			Write-Error "Message Failed to Send!"
+		}
 
 	}
 
 	END {
-
-		# Check response status code #
-		if ($Call.StatusCode -eq '204') {
-			Write-Verbose "Message Successfully Sent!"
-			Write-Output $Call.StatusCode
-		} else {
-			Write-Error "Message Failed to Send!"
-		}
 
     }
     
