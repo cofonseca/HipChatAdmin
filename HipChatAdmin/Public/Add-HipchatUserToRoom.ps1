@@ -50,7 +50,7 @@ function Add-HipchatUserToRoom{
 				Write-Verbose "User $Name Added Successfully!"
                 $OutputObject = New-Object -TypeName PSObject
 				$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'Name' -Value $name
-				$OutputObject | Add-Member -MemberType 'NoteProperty' `-Name 'StatusCode' -Value $Call.StatusCode
+				$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'StatusCode' -Value $Call.StatusCode
 				Write-Output $OutputObject
 			} else {
 				Write-Error "Failed to add user $Name!"

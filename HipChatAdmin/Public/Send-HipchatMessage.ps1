@@ -87,7 +87,7 @@ function Send-HipchatMessage{
 			Write-Verbose "Message Successfully Sent!"
 			$OutputObject = New-Object -TypeName PSObject
 			$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'Name' -Value $name
-			$OutputObject | Add-Member -MemberType 'NoteProperty' `-Name 'StatusCode' -Value $Call.StatusCode
+			$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'StatusCode' -Value $Call.StatusCode
 			Write-Output $OutputObject
 		} else {
 			Write-Error "Message Failed to Send!"
