@@ -53,18 +53,22 @@ function Remove-HipchatRoom{
 				-ContentType "application/json" `
 				-Body (ConvertTo-Json $Body)
 		)
+        # Check response status code #
+		if ($Call.StatusCode -eq '204') {
+			Write-Verbose "Room Deleted Successfully!"
+			$OutputObject = New-Object -TypeName PSObject
+			$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'Name' -Value $name
+			$OutputObject | Add-Member -MemberType 'NoteProperty' `-Name 'StatusCode' -Value $Call.StatusCode
+			Write-Output $OutputObject
+		} else {
+			Write-Error "Room Deletion Failed!"
+		}
 
 	}
 
 	END {
 
-		# Check response status code #
-		if ($Call.StatusCode -eq '204') {
-			Write-Verbose "Room Deleted Successfully!"
-			Write-Output $Call.StatusCode
-		} else {
-			Write-Error "Room Deletion Failed!"
-		}
+		
 
     }
     
