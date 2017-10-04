@@ -7,23 +7,19 @@ Describe "New-HipchatUser" {
             
             It 'Attempts to invoke web api' {
                 Mock Invoke-WebRequest -MockWith {
-                    $request = @{'id' = '123456';
+                    $returned = @{'id' = '123456';
                                 'Content' = 'someContent';
                                 'Status' = 'someStatus';
                                 'StatusCode' = '201'
                                 }
-                    return $request
+                    return $returned
                 }
-                $global:result = New-HipchatUser -FirstName 'Pester' -LastName 'Test' -ApiToken $ApiToken
+                $global:result = New-HipchatUser -FirstName 'Pester' -LastName 'Test' -ApiToken 'REXsCauSe553gsoIJg1Gj4zwNsSAwS'
+                Assert-MockCalled -CommandName 'Invoke-WebRequest' -Times 1 -Scope It
             }
             
-            It 'Should be mocked' {
-                $MockParams = @{
-                    CommandName = 'Invoke-WebRequest'
-                    Times = 1
-                    Exactly = $true
-                }
-                Assert-MockCalled @MockParams
+            It 'StatusCode field exists and not null' {
+                $result.StatusCode.ToString() | Should Not Be $null
             }
             
             It "Should return a 201 Status Code" {
