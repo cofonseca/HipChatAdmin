@@ -82,18 +82,22 @@ function New-HipchatUser{
 			Write-Output "Exception Message: $($_.Exception.Message)"
 			Exit 1
 		}
+		# Check response status code #
+		if ($Call.StatusCode -eq '201') {
+			Write-Verbose "User Created Successfully!"
+			$OutputObject = New-Object -TypeName PSObject
+			$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'MentionName' -Value $MentionName
+            $OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'FirstName' -Value $FirstName
+            $OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'LastName' -Value $LastName
+			$OutputObject | Add-Member -MemberType 'NoteProperty' `-Name 'StatusCode' -Value $Call.StatusCode
+			Write-Output $OutputObject
+		} else {
+			Write-Error "User Creation Failed!"
+		}
 
 	}
 
 	END {
-
-		# Check response status code #
-		if ($Call.StatusCode -eq '201') {
-			Write-Verbose "User Created Successfully!"
-			Write-Output $Call.StatusCode
-		} else {
-			Write-Error "User Creation Failed!"
-		}
 
     }
     
