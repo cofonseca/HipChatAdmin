@@ -1,7 +1,7 @@
 ﻿Import-Module PHipChatAdmin
 
 Describe "New-HipchatUser" {
-    InModuleScope PHipChatAdmin {
+    InModuleScope HipChatAdmin {
         
         Context "When the API call is sent" {
             
