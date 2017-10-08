@@ -26,38 +26,39 @@ function Add-HipchatUserToRoom{
 
     [CmdletBinding()]
 	Param(
-		[Parameter(Mandatory=$true,ValueFromPipeline=$true,HelpMessage="Enter the users mention name (@name)")][Alias('UserName')][string]$MentionName,
+		[Parameter(Mandatory=$true,ValueFromPipeline=$true,HelpMessage="Enter the users mention name (@name)")][Alias('UserName')][string[]]$MentionName,
     	[Parameter(Mandatory=$true,ValueFromPipeline=$true,HelpMessage="Enter the room name")][string]$RoomName,
 		[Parameter(Mandatory=$true,ValueFromPipeline=$true,HelpMessage="Enter your API Token")][Alias('ApiKey')][string]$ApiToken
     )
 
-    BEGIN {
-
-		$Uri = "https://api.hipchat.com/v2/room/"+$RoomName+"/member/@"+$MentionName+"?auth_token="+$ApiToken
-    }
+    BEGIN {}
 
     PROCESS {
 
-		# Send API Request #
-		$Call = (
-			Invoke-WebRequest `
-				-Uri $Uri `
-				-Method PUT `
-				-ContentType "application/json"
-		)
+		Foreach ($Name in $MentionName) {
+			$Uri = "https://api.hipchat.com/v2/room/"+$RoomName+"/member/@"+$Name+"?auth_token="+$ApiToken
+			# Send API Request #
+			$Call = (
+				Invoke-WebRequest `
+					-Uri $Uri `
+					-Method PUT `
+					-ContentType "application/json"
+			)
+			
+			# Check response status code #
+			if ($Call.StatusCode -eq '204') {
+				Write-Verbose "User $Name Added Successfully!"
+				$OutputObject = New-Object -TypeName PSObject
+				$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'Name' -Value $name
+				$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'StatusCode' -Value $Call.StatusCode
+				Write-Output $OutputObject
+			} else {
+				Write-Error "Failed to add user $Name!"
+			}
+		}
 
 	}
 
-	END {
-
-		# Check response status code #
-		if ($Call.StatusCode -eq '204') {
-			Write-Verbose "User Added Successfully!"
-			Write-Output $Call.StatusCode
-		} else {
-			Write-Error "Failed to add user!"
-		}
-
-    }
+	END {}
     
 }

@@ -67,25 +67,37 @@ function New-HipchatUser{
 		Write-Verbose "Sending $Body to HipChat API"
 
 		# Send API Request #
-		$Call = (
-			Invoke-WebRequest `
-				-Uri "https://api.hipchat.com/v2/user?auth_token=$ApiToken" `
-				-Method POST `
-				-ContentType "application/json" `
-				-Body (ConvertTo-Json $Body)
-		)
+		try {
+			$Call = (
+				Invoke-WebRequest `
+					-Uri "https://api.hipchat.com/v2/user?auth_token=$ApiToken" `
+					-Method POST `
+					-ContentType "application/json" `
+					-Body (ConvertTo-Json $Body)
+			)
+		}
+		catch {
+			Write-Output "Caught an exception:"
+			Write-Output "Exception Type: $($_.Exception.GetType().FullName)"
+			Write-Output "Exception Message: $($_.Exception.Message)"
+			Exit 1
+		}
+		# Check response status code #
+		if ($Call.StatusCode -eq '201') {
+			Write-Verbose "User Created Successfully!"
+			$OutputObject = New-Object -TypeName PSObject
+			$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'MentionName' -Value $MentionName
+			$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'FirstName' -Value $FirstName
+			$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'LastName' -Value $LastName
+			$OutputObject | Add-Member -MemberType 'NoteProperty' -Name 'StatusCode' -Value $Call.StatusCode
+			Write-Output $OutputObject
+		} else {
+			Write-Error "User Creation Failed!"
+		}
 
 	}
 
 	END {
-
-		# Check response status code #
-		if ($Call.StatusCode -eq '201') {
-			Write-Verbose "User Created Successfully!"
-			Write-Output $Call.StatusCode
-		} else {
-			Write-Error "User Creation Failed!"
-		}
 
     }
     
